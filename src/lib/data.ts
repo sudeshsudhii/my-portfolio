@@ -371,7 +371,7 @@ export const projects: Project[] = [
   },
   {
     slug: "sbce-website",
-    title: "SBCE Official Website",
+    title: "SBCEC Official Website",
     description:
       "Official digital portal and website for SBCE, featuring modern UI and responsive design.",
     longDescription:
