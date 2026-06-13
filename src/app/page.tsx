@@ -137,15 +137,27 @@ export default function HomePage() {
       </section>
 
       {/* ── Metrics Bar ──────────────────────────────────── */}
-      <section className="border-y border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-x-auto">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="flex items-center gap-x-8 gap-y-4 whitespace-nowrap">
-            {metrics.map((m, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm font-bold text-[var(--fg-primary)] tracking-wide">
-                {i > 0 && <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] hidden sm:block" />}
-                {m}
-              </div>
-            ))}
+      <section className="border-y border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-hidden">
+        <div className="py-5">
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+            {/* First Set */}
+            <div className="flex items-center gap-8 px-4 whitespace-nowrap">
+              {metrics.map((m, i) => (
+                <div key={i} className="flex items-center gap-8 text-sm font-bold text-[var(--fg-primary)] tracking-wide">
+                  {m}
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] hidden sm:block" />
+                </div>
+              ))}
+            </div>
+            {/* Second Set (Duplicate for seamless loop) */}
+            <div className="flex items-center gap-8 px-4 whitespace-nowrap" aria-hidden="true">
+              {metrics.map((m, i) => (
+                <div key={i} className="flex items-center gap-8 text-sm font-bold text-[var(--fg-primary)] tracking-wide">
+                  {m}
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] hidden sm:block" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

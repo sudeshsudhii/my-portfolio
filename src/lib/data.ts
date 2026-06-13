@@ -34,7 +34,7 @@ export interface Project {
   category: ProjectCategory;
   tier: ProjectTier;
   tech: string[];
-  github: string;
+  github?: string;
   demo?: string;
   features: string[];
   challenges: string[];

@@ -71,14 +71,16 @@ export function ProjectCard({ project }: { project: Project }) {
 
         {/* Links */}
         <div className="flex items-center gap-3 mt-auto pt-2">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative z-10 inline-flex items-center gap-1.5 text-xs font-medium text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors no-underline"
-          >
-            <GithubIcon size={14} /> Code
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-10 inline-flex items-center gap-1.5 text-xs font-medium text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors no-underline"
+            >
+              <GithubIcon size={14} /> Code
+            </a>
+          )}
           {project.demo && (
             <a
               href={project.demo}
