@@ -7,7 +7,8 @@ import {
   Cloud, 
   Code2, 
   Blocks, 
-  Cpu 
+  Cpu,
+  Calendar
 } from "lucide-react";
 import { certifications } from "@/lib/data";
 
@@ -65,9 +66,16 @@ export default function CertificationsPage() {
               <h3 className="text-base font-semibold text-[var(--fg-primary)] mb-1.5 leading-snug">
                 {cert.title}
               </h3>
-              <p className="text-sm text-[var(--fg-secondary)] mb-6 flex-1">
-                {cert.issuer}
-              </p>
+              <div className="mb-6 flex-1">
+                <p className="text-sm text-[var(--fg-secondary)]">
+                  {cert.issuer}
+                </p>
+                {cert.date && (
+                  <p className="text-xs text-[var(--fg-tertiary)] mt-1 flex items-center gap-1.5 font-medium">
+                    <Calendar size={12} /> {cert.date}
+                  </p>
+                )}
+              </div>
 
               <div className="mt-auto pt-4 border-t border-[var(--border-subtle)]">
                 <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] text-[var(--fg-secondary)]">
