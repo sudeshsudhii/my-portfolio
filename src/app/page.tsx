@@ -30,11 +30,11 @@ export default function HomePage() {
   
   const metrics = [
     "Creator of OmniSLM",
-    "AI Systems Engineer",
-    "22+ Public Repositories",
-    "Java + Python AI Engineering",
+    "Software Engineer",
+    "M.Tech CS @ SRMIST",
+    "Python + Java AI Engineering",
     "RAG & Agent Architectures",
-    "Blockchain + AI Platforms",
+    "Open Source Contributor",
   ];
 
   return (
@@ -44,11 +44,15 @@ export default function HomePage() {
         <div className="flex flex-col-reverse md:flex-row items-start gap-10 md:gap-16">
           <div className="flex-1">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--fg-primary)] leading-[1.1] mb-6">
-              Building production-ready AI systems with Small Language Models.
+              Sudesh P <span className="text-[var(--fg-secondary)]">—</span> Software Engineer
             </h1>
-            <p className="text-lg sm:text-xl text-[var(--fg-secondary)] leading-relaxed max-w-2xl mb-8">
-              {siteConfig.description}
+            <p className="text-lg sm:text-xl text-[var(--fg-secondary)] leading-relaxed max-w-2xl mb-2">
+              Creator of OmniSLM. Building production-ready AI applications with Small Language Models.
             </p>
+            <p className="text-base text-[var(--fg-tertiary)] leading-relaxed max-w-2xl mb-8">
+              Focused on RAG pipelines, local-first LLM platforms, agent architectures, and privacy-first AI infrastructure.
+            </p>
+
 
             {/* Location + Education */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--fg-tertiary)] mb-8">
@@ -68,6 +72,13 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] hover:bg-[var(--fg-secondary)] transition-colors no-underline"
               >
                 View Projects
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] transition-colors no-underline"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Open to AI Engineering Roles
               </Link>
               <a
                 href="/resume.pdf"
@@ -100,7 +111,9 @@ export default function HomePage() {
                 <LinkedinIcon size={18} />
               </a>
               <a
-                href={`mailto:${siteConfig.email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${siteConfig.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Email"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] hover:border-[var(--border)] transition-colors"
               >
@@ -126,7 +139,7 @@ export default function HomePage() {
       {/* ── Metrics Bar ──────────────────────────────────── */}
       <section className="border-y border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-x-auto">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="flex items-center justify-start sm:justify-center gap-x-8 gap-y-4 whitespace-nowrap">
+          <div className="flex items-center gap-x-8 gap-y-4 whitespace-nowrap">
             {metrics.map((m, i) => (
               <div key={i} className="flex items-center gap-3 text-sm font-bold text-[var(--fg-primary)] tracking-wide">
                 {i > 0 && <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] hidden sm:block" />}

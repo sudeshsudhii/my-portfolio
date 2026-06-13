@@ -4,9 +4,12 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact Sudesh P — Software Engineer",
   description:
-    "Get in touch with Sudesh P for AI engineering roles, full-stack development opportunities, or collaboration.",
+    "Get in touch with Sudesh P for AI engineering roles, collaboration on open-source AI projects, or technical consulting.",
+  alternates: {
+    canonical: "https://sudhii.in/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -17,8 +20,8 @@ export default function ContactPage() {
           Contact
         </h1>
         <p className="text-base text-[var(--fg-secondary)]">
-          I&apos;m open to internships, full-time positions, and collaboration
-          opportunities. Let&apos;s connect.
+          I&apos;m open to full-time AI engineering positions, research
+          collaborations, and open-source partnerships. Let&apos;s connect.
         </p>
       </div>
 
@@ -31,7 +34,9 @@ export default function ContactPage() {
             </h2>
             <div className="space-y-3">
               <a
-                href={`mailto:${siteConfig.email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${siteConfig.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 rounded-[var(--radius-md)] border border-[var(--border-subtle)] hover:border-[var(--border)] hover:shadow-[var(--shadow-sm)] transition-all no-underline group"
               >
                 <div className="w-9 h-9 rounded-[var(--radius-sm)] bg-[var(--accent-subtle)] flex items-center justify-center shrink-0">

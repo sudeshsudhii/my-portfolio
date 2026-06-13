@@ -4,8 +4,11 @@ import { GithubIcon as Github } from "@/components/icons";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Open Source | Sudesh P",
-  description: "Open source contributions, OmniSLM, and repository highlights.",
+  title: "Open Source \u2014 OmniSLM Framework",
+  description: "Open source contributions by Sudesh P. OmniSLM \u2014 a Python framework for building AI applications with Small Language Models. MIT licensed.",
+  alternates: {
+    canonical: "https://sudhii.in/open-source",
+  },
 };
 
 export default function OpenSourcePage() {

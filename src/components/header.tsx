@@ -32,7 +32,7 @@ export function Header() {
             href="/"
             className="text-lg font-semibold tracking-tight text-[var(--fg-primary)] hover:text-[var(--accent)] transition-colors no-underline"
           >
-            sudesh<span className="text-[var(--accent)]">.</span>p
+            SUDESH<span className="text-[var(--accent)]">.</span>P
           </Link>
 
           {/* Desktop Nav */}

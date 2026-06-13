@@ -14,7 +14,7 @@ export function Footer() {
               href="/"
               className="text-lg font-semibold tracking-tight text-[var(--fg-primary)] hover:text-[var(--accent)] transition-colors no-underline"
             >
-              sudesh<span className="text-[var(--accent)]">.</span>p
+              SUDESH<span className="text-[var(--accent)]">.</span>P
             </Link>
             <p className="mt-2 text-sm text-[var(--fg-secondary)] max-w-xs">
               {siteConfig.description}
@@ -29,6 +29,9 @@ export function Footer() {
             <ul className="space-y-2">
               {[
                 { href: "/projects", label: "Projects" },
+                { href: "/architecture", label: "Architecture" },
+                { href: "/open-source", label: "Open Source" },
+                { href: "/notes", label: "Notes" },
                 { href: "/about", label: "About" },
                 { href: "/skills", label: "Skills" },
                 { href: "/certifications", label: "Certifications" },
@@ -71,7 +74,9 @@ export function Footer() {
                 <LinkedinIcon size={18} />
               </a>
               <a
-                href={`mailto:${siteConfig.email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${siteConfig.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Email"
                 className="inline-flex items-center justify-center w-9 h-9 rounded-[var(--radius-sm)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
               >

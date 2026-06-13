@@ -4,9 +4,12 @@ import { MapPin, GraduationCap } from "lucide-react";
 import { siteConfig, educationTimeline, engineeringMilestones } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Sudesh P — Software Engineer, Chennai",
   description:
-    "Background, education, and technical philosophy of Sudesh P — AI Systems Engineer.",
+    "Background, education, and engineering philosophy of Sudesh P — Software Engineer and creator of OmniSLM. M.Tech CS at SRMIST, Chennai.",
+  alternates: {
+    canonical: "https://sudhii.in/about",
+  },
 };
 
 export default function AboutPage() {
@@ -23,7 +26,7 @@ export default function AboutPage() {
         />
         <div>
           <h1 className="text-3xl font-bold text-[var(--fg-primary)] tracking-tight mb-2">
-            About Me
+            Sudesh P — Software Engineer & Creator of OmniSLM
           </h1>
           <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--fg-secondary)]">
             <span className="inline-flex items-center gap-1.5">
@@ -39,7 +42,7 @@ export default function AboutPage() {
       {/* Bio */}
       <div className="prose-custom mb-16">
         <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
-          I&apos;m Sudesh P, an AI Systems Engineer and Full-Stack Developer
+          I&apos;m Sudesh P, a Software Engineer and Full-Stack Developer
           currently pursuing my M.Tech in Computer Science at SRMIST, Chennai.
           My work sits at the intersection of artificial intelligence and
           production software engineering.

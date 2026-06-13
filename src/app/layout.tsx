@@ -18,51 +18,68 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://sudhii.in"),
   title: {
-    default: "Sudesh P — AI/LLM Engineer & Full-Stack Developer",
-    template: "%s — Sudesh P",
+    default: "Sudesh P — Software Engineer | Creator of OmniSLM",
+    template: "%s | Sudesh P — Software Engineer",
   },
   description:
-    "Portfolio of Sudesh P. Building production AI systems with RAG, local LLMs, and full-stack web platforms. M.Tech CS @ SRMIST.",
+    "Sudesh P is an Software Engineer building production-ready applications with Small Language Models. Creator of OmniSLM. RAG pipelines, local LLMs, agent architectures. M.Tech CS @ SRMIST.",
   keywords: [
     "Sudesh P",
+    "Software Engineer",
+    "OmniSLM",
+    "Small Language Models",
+    "SLM Framework",
     "AI Engineer",
     "LLM Engineer",
-    "Full-Stack Developer",
-    "RAG",
+    "RAG Pipeline",
+    "Local LLM",
+    "FAISS",
+    "Ollama",
     "Spring AI",
-    "React",
-    "Next.js",
-    "Blockchain",
-    "SRMIST",
+    "Agent Architecture",
+    "Privacy-First AI",
+    "AI Infrastructure",
+    "Python AI Framework",
   ],
-  authors: [{ name: "Sudesh P" }],
+  authors: [{ name: "Sudesh P", url: "https://sudhii.in" }],
   creator: "Sudesh P",
+  alternates: {
+    canonical: "https://sudhii.in",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://sudhii.in",
-    siteName: "Sudesh P",
-    title: "Sudesh P — AI/LLM Engineer & Full-Stack Developer",
+    siteName: "Sudesh P — Software Engineer",
+    title: "Sudesh P — Software Engineer | Creator of OmniSLM",
     description:
-      "Building production AI systems with RAG, local LLMs, and full-stack web platforms.",
+      "Software Engineer building production-ready applications with Small Language Models. Creator of OmniSLM framework.",
     images: [
       {
-        url: "https://avatars.githubusercontent.com/u/144050211?v=4",
-        width: 400,
-        height: 400,
-        alt: "Sudesh P",
+        url: "https://sudhii.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Sudesh P — Software Engineer | Creator of OmniSLM",
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "Sudesh P — AI/LLM Engineer & Full-Stack Developer",
+    card: "summary_large_image",
+    title: "Sudesh P — Software Engineer | Creator of OmniSLM",
     description:
-      "Building production AI systems with RAG, local LLMs, and full-stack web platforms.",
+      "Software Engineer building production-ready applications with Small Language Models. Creator of OmniSLM framework.",
+    images: ["https://sudhii.in/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -71,30 +88,62 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
+  const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://sudhii.in/#person",
     name: "Sudesh P",
-    jobTitle: "AI/LLM Engineer & Full-Stack Developer",
+    givenName: "Sudesh",
+    familyName: "P",
+    jobTitle: "Software Engineer",
+    description:
+      "Software Engineer building production-ready applications with Small Language Models. Creator of OmniSLM.",
     url: "https://sudhii.in",
+    image: "https://sudhii.in/og-image.png",
+    email: "mrsudesh17@gmail.com",
     sameAs: [
       "https://github.com/sudeshsudhii",
       "https://linkedin.com/in/sudesh-p-8a656b358/",
     ],
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: "SRMIST",
-    },
+    alumniOf: [
+      {
+        "@type": "CollegeOrUniversity",
+        name: "SRM Institute of Science and Technology",
+        url: "https://www.srmist.edu.in",
+      },
+    ],
     knowsAbout: [
-      "RAG",
-      "LLM",
-      "Spring Boot",
-      "React",
-      "Blockchain",
+      "Artificial Intelligence",
+      "Small Language Models",
+      "Retrieval-Augmented Generation",
+      "RAG Pipelines",
       "FAISS",
+      "Ollama",
       "Python",
       "Java",
+      "Spring AI",
+      "Agent Architecture",
+      "Vector Databases",
+      "Privacy-First AI",
+      "Local LLM Deployment",
     ],
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Software Engineer",
+      occupationalCategory: "15-1252.00",
+    },
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://sudhii.in/#website",
+    name: "Sudesh P — Software Engineer",
+    url: "https://sudhii.in",
+    description:
+      "Portfolio and technical writing by Sudesh P, Software Engineer and creator of OmniSLM.",
+    publisher: { "@id": "https://sudhii.in/#person" },
+    inLanguage: "en-US",
   };
 
   return (
@@ -108,7 +157,13 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(personSchema).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
           }}
         />
         <ThemeProvider>

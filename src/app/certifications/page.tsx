@@ -12,9 +12,12 @@ import {
 import { certifications } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Certifications",
+  title: "Certifications \u2014 Oracle, IBM, Cisco",
   description:
-    "Professional certifications of Sudesh P from IBM, Oracle, Cisco, NSE Academy, NPTEL, and Infosys.",
+    "Professional certifications of Sudesh P from IBM, Oracle, Cisco, NSE Academy, NPTEL, and Infosys \u2014 validating cloud, AI, and cybersecurity competency.",
+  alternates: {
+    canonical: "https://sudhii.in/certifications",
+  },
 };
 
 const getIconForDomain = (domain: string) => {

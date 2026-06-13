@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import { skillGroups } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Skills",
+  title: "Technical Skills \u2014 AI, RAG, LLM, Spring AI",
   description:
-    "Technical skills of Sudesh P across AI/ML, backend, frontend, blockchain, and DevOps — organized by category with project context.",
+    "Technical skills of Sudesh P across AI/ML, backend, frontend, blockchain, and DevOps \u2014 organized by category with project context.",
+  alternates: {
+    canonical: "https://sudhii.in/skills",
+  },
 };
 
 export default function SkillsPage() {

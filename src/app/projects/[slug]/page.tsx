@@ -1,20 +1,30 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, ChevronRight } from "lucide-react";
 import { GithubIcon as Github } from "@/components/icons";
 import { projects } from "@/lib/data";
 import type { Metadata } from "next";
 
-interface Props {
-  params: { slug: string };
-}
-
-export function generateMetadata({ params }: Props): Metadata {
-  const project = projects.find((p) => p.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
   if (!project) return { title: "Not Found" };
+
   return {
-    title: `${project.title} | Case Study`,
-    description: project.description,
+    title: `${project.title} — AI Engineering Case Study`,
+    description: project.longDescription.slice(0, 160),
+    alternates: {
+      canonical: `https://sudhii.in/projects/${slug}`,
+    },
+    openGraph: {
+      title: `${project.title} — Case Study by Sudesh P`,
+      description: project.description,
+      type: "article",
+    },
   };
 }
 
@@ -22,8 +32,13 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export default function ProjectCaseStudy({ params }: Props) {
-  const project = projects.find((p) => p.slug === params.slug);
+export default async function ProjectCaseStudy({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
@@ -31,14 +46,40 @@ export default function ProjectCaseStudy({ params }: Props) {
 
   const { caseStudy } = project;
 
+  // Find related projects (same category, different slug)
+  const relatedProjects = projects
+    .filter((p) => p.category === project.category && p.slug !== project.slug)
+    .slice(0, 3);
+
+  // JSON-LD for case study
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: `${project.title} — AI Engineering Case Study`,
+    description: project.description,
+    author: { "@id": "https://sudhii.in/#person" },
+    publisher: { "@id": "https://sudhii.in/#person" },
+    mainEntityOfPage: `https://sudhii.in/projects/${slug}`,
+    proficiencyLevel: "Expert",
+  };
+
   return (
     <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-      <Link
-        href="/projects"
-        className="inline-flex items-center gap-2 text-sm font-medium text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors mb-10 no-underline"
-      >
-        <ArrowLeft size={16} /> Back to Projects
-      </Link>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+
+      {/* Breadcrumbs */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-sm text-[var(--fg-tertiary)] mb-8">
+        <Link href="/" className="hover:text-[var(--fg-primary)] transition-colors no-underline">Home</Link>
+        <ChevronRight size={14} />
+        <Link href="/projects" className="hover:text-[var(--fg-primary)] transition-colors no-underline">Projects</Link>
+        <ChevronRight size={14} />
+        <span className="text-[var(--fg-primary)] font-medium">{project.title}</span>
+      </nav>
 
       {/* Header */}
       <div className="mb-16">
@@ -147,6 +188,25 @@ export default function ProjectCaseStudy({ params }: Props) {
             <ul className="list-disc pl-5 space-y-2 text-[var(--fg-secondary)]">
               {project.features.map(f => <li key={f}>{f}</li>)}
             </ul>
+          </section>
+        )}
+
+        {/* Related Projects — internal linking */}
+        {relatedProjects.length > 0 && (
+          <section className="pt-8 border-t border-[var(--border-subtle)]">
+            <h2 className="text-xl font-bold text-[var(--fg-primary)] mb-6">Related Projects</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {relatedProjects.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  href={`/projects/${rp.slug}`}
+                  className="block p-4 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:border-[var(--border)] transition-colors no-underline"
+                >
+                  <h3 className="text-sm font-bold text-[var(--fg-primary)] mb-1">{rp.title}</h3>
+                  <p className="text-xs text-[var(--fg-secondary)] line-clamp-2">{rp.description}</p>
+                </Link>
+              ))}
+            </div>
           </section>
         )}
       </div>

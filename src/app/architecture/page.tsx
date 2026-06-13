@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Layers, Database, Cpu, Lock, Share2, Workflow, Link as LinkIcon, Bot } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Architecture | Sudesh P",
-  description: "Systems architecture documentation for OmniSLM, RAG pipelines, and enterprise AI platforms.",
+  title: "AI System Architecture \u2014 OmniSLM, RAG, Spring AI",
+  description: "Technical architecture documentation for OmniSLM, RAG pipelines, agent runtime, and multi-tenant AI platforms designed by Sudesh P.",
+  alternates: {
+    canonical: "https://sudhii.in/architecture",
+  },
 };
 
 export default function ArchitecturePage() {

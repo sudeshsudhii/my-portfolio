@@ -4,9 +4,9 @@
 
 export const siteConfig = {
   name: "Sudesh P",
-  title: "AI Systems Engineer",
+  title: "Software Engineer",
   description:
-    "Creator of OmniSLM. Focused on AI infrastructure, RAG systems, local-first LLM platforms, and intelligent applications.",
+    "Software Engineer building production-ready applications with Small Language Models. Creator of OmniSLM. Focused on RAG pipelines, local-first LLM platforms, and privacy-first AI infrastructure.",
   url: "https://sudhii.in",
   email: "mrsudesh17@gmail.com",
   github: "https://github.com/sudeshsudhii",

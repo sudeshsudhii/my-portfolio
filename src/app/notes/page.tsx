@@ -3,8 +3,11 @@ import Link from "next/link";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Engineering Notes | Sudesh P",
-  description: "Technical articles, architecture decisions, and engineering deep dives.",
+  title: "Engineering Notes — AI Architecture & Design",
+  description: "Technical deep dives, architecture decisions, and engineering lessons from building production AI systems with RAG, local LLMs, and agent patterns.",
+  alternates: {
+    canonical: "https://sudhii.in/notes",
+  },
 };
 
 // Placeholder MDX structure. In the future, these can be pulled via `fs.readFileSync` 
@@ -78,10 +81,8 @@ export default function NotesPage() {
               <span className="flex items-center gap-1.5"><Clock size={14} /> {note.readTime}</span>
             </div>
             
-            <h2 className="text-2xl font-bold text-[var(--fg-primary)] mb-3 group-hover:text-[var(--accent)] transition-colors">
-              <Link href={`/notes/${note.slug}`} className="before:absolute before:inset-0">
-                {note.title}
-              </Link>
+            <h2 className="text-2xl font-bold text-[var(--fg-primary)] mb-3 transition-colors">
+              {note.title}
             </h2>
             
             <p className="text-[var(--fg-secondary)] leading-relaxed mb-6">
@@ -95,19 +96,11 @@ export default function NotesPage() {
                 </span>
               ))}
             </div>
-            
-            <div className="mt-6 flex items-center gap-2 text-sm font-bold text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity">
-              Read Article <ArrowRight size={14} />
-            </div>
           </article>
         ))}
       </div>
       
-      <div className="mt-16 p-6 border-2 border-dashed border-[var(--border-subtle)] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] text-center">
-        <p className="text-sm font-medium text-[var(--fg-secondary)]">
-          Currently setting up an MDX parser. Full article content will be rendered here shortly.
-        </p>
-      </div>
+
     </div>
   );
 }

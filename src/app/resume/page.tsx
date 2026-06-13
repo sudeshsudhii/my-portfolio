@@ -3,9 +3,12 @@ import Link from "next/link";
 import { Download, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Resume",
+  title: "Resume \u2014 Sudesh P, Software Engineer",
   description:
-    "Resume of Sudesh P — AI/LLM Engineer & Full-Stack Developer. Download PDF.",
+    "Resume of Sudesh P \u2014 Software Engineer and creator of OmniSLM. Download PDF.",
+  alternates: {
+    canonical: "https://sudhii.in/resume",
+  },
 };
 
 export default function ResumePage() {
