@@ -66,16 +66,16 @@ export default function HomePage() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] hover:bg-[var(--fg-secondary)] transition-colors no-underline"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] hover:bg-[var(--fg-secondary)] transition-colors no-underline"
               >
                 View Projects
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] transition-colors no-underline"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] transition-colors no-underline"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 Open to AI Engineering Roles
@@ -84,7 +84,7 @@ export default function HomePage() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] border border-[var(--border)] text-[var(--fg-primary)] hover:bg-[var(--bg-secondary)] transition-colors no-underline"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] border border-[var(--border)] text-[var(--fg-primary)] hover:bg-[var(--bg-secondary)] transition-colors no-underline"
               >
                 Download Resume
               </a>
@@ -145,7 +145,7 @@ export default function HomePage() {
               {metrics.map((m, i) => (
                 <div key={i} className="flex items-center gap-8 text-sm font-bold text-[var(--fg-primary)] tracking-wide">
                   {m}
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] hidden sm:block" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] shrink-0" />
                 </div>
               ))}
             </div>
@@ -154,7 +154,7 @@ export default function HomePage() {
               {metrics.map((m, i) => (
                 <div key={i} className="flex items-center gap-8 text-sm font-bold text-[var(--fg-primary)] tracking-wide">
                   {m}
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] hidden sm:block" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)] shrink-0" />
                 </div>
               ))}
             </div>
