@@ -9,10 +9,29 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article
-      className={`group relative flex flex-col rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)] transition-all duration-200 hover:border-[var(--border)] hover:shadow-[var(--shadow-md)] ${
-        isHero ? "md:col-span-2 lg:col-span-2" : ""
-      }`}
+      className="group relative flex flex-col rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-hidden transition-all duration-200 hover:border-[var(--border)] hover:shadow-[var(--shadow-md)]"
     >
+      {/* Thumbnail for projects with a custom image or a demo link */}
+      {(project.image || project.demo) && (
+        <div className="w-full h-48 bg-[var(--bg-tertiary)] border-b border-[var(--border-subtle)] overflow-hidden shrink-0">
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={`${project.title} preview`}
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          ) : (
+            <img
+              src={`https://api.microlink.io/?url=${encodeURIComponent(project.demo!)}&screenshot=true&meta=false&embed=screenshot.url`}
+              alt={`${project.title} preview`}
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          )}
+        </div>
+      )}
+
       <div className="flex flex-col flex-1 p-5 sm:p-6">
         {/* Category + Tier badges */}
         <div className="flex items-center gap-2 mb-3">

@@ -239,6 +239,7 @@ export const projects: Project[] = [
     tier: "strong",
     tech: ["Java", "Spring Boot", "AI/NLP", "Transcription", "PostgreSQL"],
     github: "https://github.com/sudeshsudhii/PaathAI",
+    demo: "https://paathai.sudhii.in/",
     features: [
       "Automated lecture transcription",
       "Syllabus-aware topic extraction",
@@ -270,7 +271,7 @@ export const projects: Project[] = [
     tech: ["React", "Node.js", "Express", "MongoDB", "Material UI"],
     github:
       "https://github.com/sudeshsudhii/College-Management-System-project",
-    demo: "https://college-management-system-project.vercel.app",
+    demo: "https://cms.sudhii.in/",
     features: [
       "Admin, Teacher, and Student portals",
       "Real-time attendance tracking",
@@ -301,7 +302,7 @@ export const projects: Project[] = [
     tier: "strong",
     tech: ["TypeScript", "Next.js", "AI/NLP", "Web Scraping"],
     github: "https://github.com/sudeshsudhii/SecureSite-Auditor-AI",
-    demo: "https://secure-site-auditor-ai-web.vercel.app",
+    demo: "https://siteauditor.sudhii.in/",
     features: [
       "Automated website scanning and analysis",
       "Tracker and cookie detection",
@@ -332,7 +333,7 @@ export const projects: Project[] = [
     tier: "supporting",
     tech: ["JavaScript", "React", "Node.js", "MongoDB"],
     github: "https://github.com/sudeshsudhii/Work-Flow-Automation-App",
-    demo: "https://work-flow-automation-app.vercel.app",
+    demo: "https://automate.sudhii.in/",
     features: [
       "Visual workflow builder",
       "Task orchestration engine",
@@ -367,6 +368,32 @@ export const projects: Project[] = [
       "Public transparency dashboard",
     ],
     challenges: ["Designing for scale in a national distribution system"],
+  },
+  {
+    slug: "sbce-website",
+    title: "SBCE Official Website",
+    description:
+      "Official digital portal and website for SBCE, featuring modern UI and responsive design.",
+    longDescription:
+      "Designed and developed the official web presence for SBCE. The portal focuses on providing a mobile-friendly, accessible, and fast experience for students, faculty, and prospective applicants.",
+    problem:
+      "The institution needed a modernized digital footprint to improve communication, accessibility, and loading speeds.",
+    solution:
+      "A fully responsive web application with optimized assets, clean navigation, and modern frontend architecture.",
+    impact: "Currently live and serving as the primary digital gateway for the institution.",
+    category: "fullstack",
+    tier: "supporting",
+    tech: ["Web Development", "Frontend", "Responsive Design", "UI/UX"],
+    demo: "https://www.sbcecarni.edu.in/",
+    features: [
+      "Mobile-first responsive architecture",
+      "Optimized asset delivery for fast load times",
+      "Accessible navigation for faculty and students",
+      "Modern and clean user interface",
+    ],
+    challenges: [
+      "Ensuring cross-device compatibility and strict accessibility standards",
+    ],
   },
 ];
 
