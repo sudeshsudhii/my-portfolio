@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Explore AI engineering projects by Sudesh P: OmniSLM framework, RAG pipelines, blockchain platforms, and local LLM applications with full case studies.",
   alternates: {
-    canonical: "https://sudhii.in/projects",
+    canonical: "https://www.sudhii.in/projects",
   },
 };
 

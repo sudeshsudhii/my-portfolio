@@ -72,6 +72,52 @@ function HomepageFAQSchema() {
   );
 }
 
+function HomepageSitelinksSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "OmniSLM Framework",
+        "url": "https://www.sudhii.in/projects/omnislm"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "PaathAI Platform",
+        "url": "https://www.sudhii.in/projects/paathai"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Local LLM Platform",
+        "url": "https://www.sudhii.in/projects/local-llm"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "SeedTracking Web3",
+        "url": "https://www.sudhii.in/projects/seedtracking"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "View All Projects",
+        "url": "https://www.sudhii.in/projects"
+      }
+    ]
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default function HomePage() {
   const selectedWorkSlugs = [
     "omnislm",
@@ -96,6 +142,7 @@ export default function HomePage() {
   return (
     <>
       <HomepageFAQSchema />
+      <HomepageSitelinksSchema />
       {/* ── Hero Section ─────────────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-16">
         <div className="flex flex-col-reverse md:flex-row items-start gap-10 md:gap-16">
