@@ -7,7 +7,7 @@ export const siteConfig = {
   title: "Software Engineer",
   description:
     "Software Engineer building production-ready applications with Small Language Models. Creator of OmniSLM. Focused on RAG pipelines, local-first LLM platforms, and privacy-first AI infrastructure.",
-  url: "https://sudhii.in",
+  url: "https://www.sudhii.in",
   email: "mrsudesh17@gmail.com",
   github: "https://github.com/sudeshsudhii",
   linkedin: "https://linkedin.com/in/sudesh-p-8a656b358/",
@@ -17,7 +17,7 @@ export const siteConfig = {
     institution: "SRMIST, Chennai",
     undergrad: "B.Tech Information Technology",
   },
-  avatar: "https://avatars.githubusercontent.com/u/144050211?v=4",
+  avatar: "/sudesh-profile.jpg",
 };
 
 export type ProjectCategory = "ai" | "fullstack" | "blockchain" | "security";

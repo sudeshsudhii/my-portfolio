@@ -14,22 +14,227 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === slug);
   if (!project) return { title: "Not Found" };
 
+  const canonicalUrl = `https://www.sudhii.in/projects/${slug}`;
+
+  // Unique metadata for specific hero projects
+  if (slug === "omnislm") {
+    return {
+      title: "OmniSLM — Open Source Small Language Model Framework",
+      description:
+        "OmniSLM is an open-source Python framework for building production AI apps with Small Language Models. Unified RAG, memory, agent orchestration, and local inference. By Sudesh P (Sudhii), SRMIST Chennai.",
+      alternates: { canonical: canonicalUrl },
+      openGraph: {
+        title: "OmniSLM — Open Source SLM Framework | Sudesh P",
+        description:
+          "Unified Python framework for Small Language Model apps. RAG, memory, agents — all locally. Open source. By Sudesh P (Sudhii).",
+        url: canonicalUrl,
+        type: "article",
+        images: [
+          {
+            url: "https://www.sudhii.in/og-omnislm.png",
+            width: 1200,
+            height: 630,
+            alt: "OmniSLM — Open Source Small Language Model Framework by Sudesh P",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "OmniSLM — Open Source SLM Framework",
+        description: "Unified Python framework for Small Language Model apps.",
+        images: ["https://www.sudhii.in/og-omnislm.png"],
+      },
+    };
+  }
+
+  if (slug === "paathai") {
+    return {
+      title: "PaathAI — AI-Powered Lecture Intelligence Platform",
+      description:
+        "PaathAI automatically transcribes lectures, maps content to syllabus topics, and generates searchable summaries with progress analytics. Built with Java, Spring Boot, and AI/NLP by Sudesh P (Sudhii).",
+      alternates: { canonical: canonicalUrl },
+      openGraph: {
+        title: "PaathAI — AI Lecture Intelligence Platform | Sudesh P",
+        description:
+          "AI platform that transcribes lectures, maps to syllabus, and builds searchable academic knowledge bases. By Sudesh P.",
+        url: canonicalUrl,
+        type: "article",
+        images: [
+          {
+            url: "https://www.sudhii.in/og-paathai.png",
+            width: 1200,
+            height: 630,
+            alt: "PaathAI — AI Lecture Intelligence by Sudesh P",
+          },
+        ],
+      },
+    };
+  }
+
   return {
     title: `${project.title} — AI Engineering Case Study`,
     description: project.longDescription.slice(0, 160),
     alternates: {
-      canonical: `https://sudhii.in/projects/${slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: `${project.title} — Case Study by Sudesh P`,
       description: project.description,
       type: "article",
+      url: canonicalUrl,
     },
   };
 }
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
+}
+
+// Schemas
+function BreadcrumbSchema({ slug, name }: { slug: string; name: string }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.sudhii.in",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: "https://www.sudhii.in/projects",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: name,
+        item: `https://www.sudhii.in/projects/${slug}`,
+      },
+    ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+function OmniSLMSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.sudhii.in/projects/omnislm#software",
+        name: "OmniSLM",
+        alternateName: ["Omni SLM", "OmniSLM Framework"],
+        description:
+          "OmniSLM is an open-source, extensible Python framework for building production-ready AI applications with Small Language Models. It provides unified RAG pipelines, vector-backed memory, agent orchestration, and pluggable inference — all designed to run locally without cloud dependencies.",
+        url: "https://www.sudhii.in/projects/omnislm",
+        codeRepository: "https://github.com/sudeshsudhii/OmniSLM",
+        programmingLanguage: ["Python"],
+        applicationCategory: "DeveloperApplication",
+        applicationSubCategory: "AI Framework",
+        operatingSystem: ["Linux", "macOS", "Windows"],
+        license: "https://opensource.org/licenses/MIT",
+        author: { "@id": "https://www.sudhii.in/#person" },
+        creator: { "@id": "https://www.sudhii.in/#person" },
+        keywords:
+          "Small Language Model, SLM Framework, RAG, FAISS, Ollama, Local LLM, AI Infrastructure, Open Source AI, OmniSLM, Python AI Framework",
+        dateCreated: "2026",
+        featureList: [
+          "Pluggable Runtime Layer for Ollama and local inference engines",
+          "Vector-backed Memory Engine with FAISS and Qdrant support",
+          "Built-in RAG Framework with document ingestion and chunking",
+          "Agent SDK for autonomous multi-step tool execution",
+          "Privacy-first local deployment — zero cloud dependencies",
+        ],
+        isAccessibleForFree: true,
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What is OmniSLM?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "OmniSLM is an open-source Python framework for building production-ready AI applications using Small Language Models (SLMs). It unifies RAG pipelines, memory management, agent orchestration, and local inference into a single extensible architecture. Created by Sudesh P (Sudhii) at SRMIST Chennai.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is OmniSLM free and open source?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. OmniSLM is fully open source under the MIT license and available at github.com/sudeshsudhii/OmniSLM. It is free to use, modify, and distribute.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How does OmniSLM differ from LangChain?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "OmniSLM is specifically designed for Small Language Models and privacy-first local inference. Unlike LangChain which targets cloud-based LLMs, OmniSLM runs entirely on local hardware with zero cloud dependencies, using Ollama as the default inference backend.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What vector databases does OmniSLM support?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "OmniSLM has built-in support for FAISS and Qdrant via a pluggable vector storage interface, allowing developers to swap backends without rewriting application logic.",
+            },
+          },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+function PaathAISchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["SoftwareApplication", "LearningResource"],
+        name: "PaathAI",
+        description:
+          "PaathAI is an AI-powered academic intelligence platform that transcribes lectures, maps content to syllabus topics, and provides searchable summaries with progress analytics. Transforms passive lecture recordings into structured knowledge bases.",
+        url: "https://www.sudhii.in/projects/paathai",
+        applicationCategory: "EducationalApplication",
+        author: { "@id": "https://www.sudhii.in/#person" },
+        keywords:
+          "AI learning platform, lecture transcription AI, syllabus mapping, academic analytics, AI tutor, personalized learning India, PaathAI",
+        educationalUse: "Lecture review and syllabus tracking",
+        learningResourceType: "AI Academic Platform",
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
 }
 
 export default async function ProjectCaseStudy({
@@ -57,9 +262,9 @@ export default async function ProjectCaseStudy({
     "@type": "TechArticle",
     headline: `${project.title} — AI Engineering Case Study`,
     description: project.description,
-    author: { "@id": "https://sudhii.in/#person" },
-    publisher: { "@id": "https://sudhii.in/#person" },
-    mainEntityOfPage: `https://sudhii.in/projects/${slug}`,
+    author: { "@id": "https://www.sudhii.in/#person" },
+    publisher: { "@id": "https://www.sudhii.in/#person" },
+    mainEntityOfPage: `https://www.sudhii.in/projects/${slug}`,
     proficiencyLevel: "Expert",
   };
 
@@ -71,6 +276,11 @@ export default async function ProjectCaseStudy({
           __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c"),
         }}
       />
+      
+      <BreadcrumbSchema slug={project.slug} name={project.title} />
+      
+      {slug === "omnislm" && <OmniSLMSchema />}
+      {slug === "paathai" && <PaathAISchema />}
 
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-sm text-[var(--fg-tertiary)] mb-8">
@@ -101,14 +311,16 @@ export default async function ProjectCaseStudy({
         </p>
 
         <div className="flex flex-wrap items-center gap-4">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] hover:bg-[var(--fg-secondary)] transition-colors no-underline"
-          >
-            <Github size={16} /> View Repository
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] hover:bg-[var(--fg-secondary)] transition-colors no-underline"
+            >
+              <Github size={16} /> View Repository
+            </a>
+          )}
           {project.demo && (
             <a
               href={project.demo}

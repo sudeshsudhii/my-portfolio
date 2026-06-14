@@ -6,9 +6,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: "/api/",
       },
       {
         userAgent: "GPTBot",
+        allow: "/",
+      },
+      {
+        userAgent: "Claude-Web",
         allow: "/",
       },
       {
@@ -24,10 +29,14 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
       {
+        userAgent: "Googlebot",
+        allow: "/",
+      },
+      {
         userAgent: "Applebot-Extended",
         allow: "/",
       },
     ],
-    sitemap: "https://sudhii.in/sitemap.xml",
+    sitemap: "https://www.sudhii.in/sitemap.xml",
   };
 }

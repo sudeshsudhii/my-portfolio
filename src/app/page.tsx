@@ -16,6 +16,62 @@ import {
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { siteConfig, projects } from "@/lib/data";
 
+function HomepageFAQSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Who is Sudhii?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Sudhii is the personal brand of Sudesh P, an AI Systems Engineer and M.Tech Computer Science student at SRMIST Chennai, India. He is the creator of OmniSLM, an open-source Python framework for building production AI applications with Small Language Models.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is OmniSLM?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "OmniSLM is an open-source Python framework created by Sudesh P (Sudhii) for building production-ready AI apps with Small Language Models. It unifies RAG pipelines, vector memory, agent orchestration, and local inference in one extensible architecture.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is PaathAI?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "PaathAI is an AI-powered academic intelligence platform built by Sudesh P that automatically transcribes lectures, maps content to syllabus topics, and generates searchable summaries with progress analytics.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Sudesh P available for AI Engineering roles?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Sudesh P (Sudhii) is open to AI Engineering roles. Contact via sudhii.in/contact or email mrsudesh17@gmail.com.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where can I find OmniSLM source code?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "OmniSLM is open source on GitHub at github.com/sudeshsudhii/OmniSLM under the MIT license.",
+        },
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default function HomePage() {
   const selectedWorkSlugs = [
     "omnislm",
@@ -39,6 +95,7 @@ export default function HomePage() {
 
   return (
     <>
+      <HomepageFAQSchema />
       {/* ── Hero Section ─────────────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-16">
         <div className="flex flex-col-reverse md:flex-row items-start gap-10 md:gap-16">

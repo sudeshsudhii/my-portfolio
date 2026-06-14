@@ -4,11 +4,18 @@ import { MapPin, GraduationCap } from "lucide-react";
 import { siteConfig, educationTimeline, engineeringMilestones } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "About Sudesh P — Software Engineer, Chennai",
+  title: "About Sudesh P (Sudhii) — AI Engineer, SRMIST Chennai",
   description:
-    "Background, education, and engineering philosophy of Sudesh P — Software Engineer and creator of OmniSLM. M.Tech CS at SRMIST, Chennai.",
+    "Sudesh P, known online as Sudhii, is an AI Systems Engineer and M.Tech CS student at SRMIST Chennai. Creator of OmniSLM. Expert in Small Language Models, RAG pipelines, Spring AI, and local LLM deployment.",
   alternates: {
-    canonical: "https://sudhii.in/about",
+    canonical: "https://www.sudhii.in/about",
+  },
+  openGraph: {
+    title: "About Sudesh P (Sudhii) — AI Engineer | Creator of OmniSLM",
+    url: "https://www.sudhii.in/about",
+    images: [
+      { url: "https://www.sudhii.in/og-image.png", width: 1200, height: 630 },
+    ],
   },
 };
 
@@ -26,7 +33,7 @@ export default function AboutPage() {
         />
         <div>
           <h1 className="text-3xl font-bold text-[var(--fg-primary)] tracking-tight mb-2">
-            Sudesh P — Software Engineer & Creator of OmniSLM
+            Sudesh P — Software Engineer &amp; Creator of OmniSLM
           </h1>
           <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--fg-secondary)]">
             <span className="inline-flex items-center gap-1.5">
@@ -38,6 +45,28 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
+
+      {/* AI-readable summary */}
+      <section aria-label="About Sudesh P — AI-readable summary" className="prose-custom mb-8">
+        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
+          Sudesh P, also known online as <strong className="text-[var(--fg-primary)]">Sudhii</strong>, is a Software Engineer
+          and AI Systems Engineer based in Chennai, India. He is currently pursuing his
+          M.Tech in Computer Science (Artificial Intelligence specialisation) at SRM
+          Institute of Science and Technology (SRMIST), Chennai (2025–2027).
+        </p>
+        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
+          He is the creator and lead developer of <strong className="text-[var(--fg-primary)]">OmniSLM</strong>, an open-source
+          Python framework for building production AI applications with Small Language
+          Models (SLMs). His technical expertise includes RAG pipelines (FAISS, Qdrant),
+          local LLM deployment via Ollama, agent architectures, Java 21 with Spring AI,
+          blockchain (Ethereum/Solidity), and full-stack web development (Next.js, React).
+        </p>
+        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
+          He participated in the CYSTAR Winter School at IIT Madras in December 2025,
+          focusing on cybersecurity and secure AI systems. His GitHub handle is{" "}
+          <a href="https://github.com/sudeshsudhii" rel="me" className="text-[var(--accent)] hover:underline">sudeshsudhii</a>.
+        </p>
+      </section>
 
       {/* Bio */}
       <div className="prose-custom mb-16">
@@ -71,7 +100,7 @@ export default function AboutPage() {
       {/* Education Timeline */}
       <div className="mb-16">
         <h2 className="text-2xl font-bold text-[var(--fg-primary)] mb-8 tracking-tight">
-          Education & Professional Development
+          Education &amp; Professional Development
         </h2>
         <div className="space-y-0 relative before:absolute before:inset-0 before:ml-[5px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[var(--border-subtle)] before:to-transparent">
           {educationTimeline.map((entry, i) => (
