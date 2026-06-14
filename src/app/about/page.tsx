@@ -1,167 +1,64 @@
-import Image from "next/image";
 import type { Metadata } from "next";
-import { MapPin, GraduationCap } from "lucide-react";
-import { siteConfig, educationTimeline, engineeringMilestones } from "@/lib/data";
+import Link from "next/link";
+import { PersonSchema } from "@/components/seo-schemas";
 
 export const metadata: Metadata = {
-  title: "About Sudesh P (Sudhii) — AI Engineer, SRMIST Chennai",
-  description:
-    "Sudesh P, known online as Sudhii, is an AI Systems Engineer and M.Tech CS student at SRMIST Chennai. Creator of OmniSLM. Expert in Small Language Models, RAG pipelines, Spring AI, and local LLM deployment.",
-  alternates: {
-    canonical: "https://www.sudhii.in/about",
-  },
-  openGraph: {
-    title: "About Sudesh P (Sudhii) — AI Engineer | Creator of OmniSLM",
-    url: "https://www.sudhii.in/about",
-    images: [
-      { url: "https://www.sudhii.in/og-image.png", width: 1200, height: 630 },
-    ],
-  },
+  title: "About | Sudesh P (Sudhii)",
+  description: "Personal story, AI journey, and mission of Sudesh P, Software Engineer and creator of OmniSLM.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start gap-6 mb-12">
-        <Image
-          src={siteConfig.avatar}
-          alt={siteConfig.name}
-          width={120}
-          height={120}
-          className="rounded-full border border-[var(--border-subtle)] shadow-sm grayscale hover:grayscale-0 transition-all duration-500"
-        />
-        <div>
-          <h1 className="text-3xl font-bold text-[var(--fg-primary)] tracking-tight mb-2">
-            Sudesh P — Software Engineer &amp; Creator of OmniSLM
-          </h1>
-          <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--fg-secondary)]">
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin size={14} /> {siteConfig.location}
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <GraduationCap size={14} /> {siteConfig.education.degree}
-            </span>
+    <>
+      <PersonSchema />
+      <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-[var(--fg-primary)] tracking-tight mb-8">
+          About Me
+        </h1>
+        
+        <div className="prose prose-neutral dark:prose-invert max-w-none text-[var(--fg-secondary)]">
+          <p className="text-lg leading-relaxed mb-6 font-medium text-[var(--fg-primary)]">
+            I am a Software Engineer based in Chennai, currently pursuing my M.Tech in Computer Science at SRM Institute of Science and Technology. My engineering focus lies squarely at the intersection of AI architecture and production software systems.
+          </p>
+
+          <h2 className="text-2xl font-bold text-[var(--fg-primary)] mt-12 mb-4">My AI Journey</h2>
+          <p className="leading-relaxed mb-4">
+            The transition from traditional software engineering to AI engineering is often framed as learning to write good prompts. I quickly discovered that this is fundamentally incorrect. Real-world AI applications are 10% prompt engineering and 90% traditional systems engineering: dealing with state, memory, queuing, retry logic, and latency.
+          </p>
+          <p className="leading-relaxed mb-4">
+            I began exploring the space of Small Language Models (SLMs) when I realized that most enterprise applications do not need a trillion-parameter model to perform narrow, well-defined tasks. 
+          </p>
+
+          <h2 className="text-2xl font-bold text-[var(--fg-primary)] mt-12 mb-4">The OmniSLM Vision</h2>
+          <p className="leading-relaxed mb-4">
+            This realization led to the creation of <Link href="/omnislm" className="text-[var(--accent)] font-semibold hover:underline">OmniSLM</Link>. It started as an internal tool to standardize how I connected local models to vector databases, and it has since evolved into an open-source framework designed to help developers build secure, privacy-first AI apps without relying on expensive APIs.
+          </p>
+          
+          <h2 className="text-2xl font-bold text-[var(--fg-primary)] mt-12 mb-4">Mission Statement</h2>
+          <p className="leading-relaxed mb-4">
+            My goal is to democratize access to production-grade AI infrastructure. By focusing on local inference, efficient RAG pipelines, and open-source tooling, I want to enable developers and small teams to build intelligent systems that rival enterprise solutions in capability, without compromising user data.
+          </p>
+
+          <h2 className="text-2xl font-bold text-[var(--fg-primary)] mt-12 mb-4">Currently</h2>
+          <ul className="list-disc list-inside space-y-2 mb-8">
+            <li>Maintaining and expanding OmniSLM.</li>
+            <li>Researching agent orchestration patterns.</li>
+            <li>Building PaathAI, an academic intelligence platform.</li>
+            <li>Looking for full-time opportunities as an AI Systems Engineer.</li>
+          </ul>
+
+          <hr className="border-[var(--border-subtle)] my-12" />
+          
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            <Link href="/contact" className="px-6 py-3 rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] font-bold text-sm hover:bg-[var(--fg-secondary)] transition-colors text-center w-full sm:w-auto">
+              Get in Touch
+            </Link>
+            <Link href="/blog" className="px-6 py-3 rounded-[var(--radius-sm)] border border-[var(--border)] text-[var(--fg-primary)] font-bold text-sm hover:bg-[var(--bg-secondary)] transition-colors text-center w-full sm:w-auto">
+              Read My Notes
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* AI-readable summary */}
-      <section aria-label="About Sudesh P — AI-readable summary" className="prose-custom mb-8">
-        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
-          Sudesh P, also known online as <strong className="text-[var(--fg-primary)]">Sudhii</strong>, is a Software Engineer
-          and AI Systems Engineer based in Chennai, India. He is currently pursuing his
-          M.Tech in Computer Science (Artificial Intelligence specialisation) at SRM
-          Institute of Science and Technology (SRMIST), Chennai (2025–2027).
-        </p>
-        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
-          He is the creator and lead developer of <strong className="text-[var(--fg-primary)]">OmniSLM</strong>, an open-source
-          Python framework for building production AI applications with Small Language
-          Models (SLMs). His technical expertise includes RAG pipelines (FAISS, Qdrant),
-          local LLM deployment via Ollama, agent architectures, Java 21 with Spring AI,
-          blockchain (Ethereum/Solidity), and full-stack web development (Next.js, React).
-        </p>
-        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
-          He participated in the CYSTAR Winter School at IIT Madras in December 2025,
-          focusing on cybersecurity and secure AI systems. His GitHub handle is{" "}
-          <a href="https://github.com/sudeshsudhii" rel="me" className="text-[var(--accent)] hover:underline">sudeshsudhii</a>.
-        </p>
-      </section>
-
-      {/* Bio */}
-      <div className="prose-custom mb-16">
-        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
-          I&apos;m Sudesh P, a Software Engineer and Full-Stack Developer
-          currently pursuing my M.Tech in Computer Science at SRMIST, Chennai.
-          My work sits at the intersection of artificial intelligence and
-          production software engineering.
-        </p>
-        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
-          I build <strong className="text-[var(--fg-primary)]">end-to-end AI applications</strong> —
-          from data ingestion and retrieval pipelines to deployed, user-facing
-          platforms. My focus is on systems that run locally, respect user
-          privacy, and solve real problems for real users.
-        </p>
-        <p className="text-base text-[var(--fg-secondary)] leading-relaxed mb-4">
-          What sets my work apart is the breadth: I&apos;m equally comfortable
-          designing a <strong className="text-[var(--fg-primary)]">FAISS-based RAG pipeline</strong> in Python,
-          building a <strong className="text-[var(--fg-primary)]">Spring AI backend</strong> in Java 21,
-          writing <strong className="text-[var(--fg-primary)]">Ethereum smart contracts</strong> in
-          Solidity, or shipping a <strong className="text-[var(--fg-primary)]">Next.js frontend</strong> to Vercel.
-          I believe the best engineers are the ones who can own a problem from
-          database to deployment.
-        </p>
-        <p className="text-base text-[var(--fg-secondary)] leading-relaxed">
-          I don&apos;t just prototype — I ship. Every project in my portfolio is
-          either deployed, open-sourced, or both.
-        </p>
-      </div>
-
-      {/* Education Timeline */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold text-[var(--fg-primary)] mb-8 tracking-tight">
-          Education &amp; Professional Development
-        </h2>
-        <div className="space-y-0 relative before:absolute before:inset-0 before:ml-[5px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[var(--border-subtle)] before:to-transparent">
-          {educationTimeline.map((entry, i) => (
-            <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active mb-8">
-              {/* Timeline dot */}
-              <div className="flex items-center justify-center w-3 h-3 rounded-full border border-white bg-[var(--fg-tertiary)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm" />
-              
-              {/* Content */}
-              <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-primary)]">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-[var(--fg-tertiary)] uppercase tracking-wider">
-                    {entry.year}
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-[var(--fg-primary)] mb-1">
-                  {entry.title}
-                </h3>
-                <p className="text-xs font-medium text-[var(--fg-secondary)] mb-2">
-                  {entry.subtitle}
-                </p>
-                <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">
-                  {entry.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Engineering Milestones */}
-      <div>
-        <h2 className="text-2xl font-bold text-[var(--fg-primary)] mb-8 tracking-tight">
-          Engineering Milestones
-        </h2>
-        <div className="space-y-0 relative before:absolute before:inset-0 before:ml-[5px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[var(--border-subtle)] before:to-transparent">
-          {engineeringMilestones.map((entry, i) => (
-            <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active mb-8">
-              {/* Timeline dot */}
-              <div className="flex items-center justify-center w-3 h-3 rounded-full border border-white bg-[var(--accent)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm" />
-              
-              {/* Content */}
-              <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-sm">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-[var(--accent)] uppercase tracking-wider">
-                    {entry.year}
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-[var(--fg-primary)] mb-1">
-                  {entry.title}
-                </h3>
-                <p className="text-xs font-medium text-[var(--fg-tertiary)] uppercase tracking-wider mb-2">
-                  {entry.subtitle}
-                </p>
-                <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">
-                  {entry.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    </>
   );
 }

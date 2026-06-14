@@ -11,10 +11,15 @@ import {
   Terminal,
   FileText,
   Map,
-  Eye
+  Eye,
+  Zap,
+  Cpu
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { siteConfig, projects } from "@/lib/data";
+import { getAllPosts } from "@/lib/mdx";
+import { ArticleCard } from "@/components/article-card";
+import { Newsletter } from "@/components/newsletter";
 
 function HomepageFAQSchema() {
   const schema = {
@@ -80,26 +85,26 @@ function HomepageSitelinksSchema() {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "OmniSLM Framework",
-        "url": "https://www.sudhii.in/projects/omnislm"
+        "name": "OmniSLM Hub",
+        "url": "https://www.sudhii.in/omnislm"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "PaathAI Platform",
-        "url": "https://www.sudhii.in/projects/paathai"
+        "name": "AI Engineering Blog",
+        "url": "https://www.sudhii.in/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Local LLM Platform",
-        "url": "https://www.sudhii.in/projects/local-llm"
+        "name": "About Author",
+        "url": "https://www.sudhii.in/author/sudesh-p"
       },
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "SeedTracking Web3",
-        "url": "https://www.sudhii.in/projects/seedtracking"
+        "name": "PaathAI Platform",
+        "url": "https://www.sudhii.in/projects/paathai"
       },
       {
         "@type": "ListItem",
@@ -119,8 +124,9 @@ function HomepageSitelinksSchema() {
 }
 
 export default function HomePage() {
+  const latestPosts = getAllPosts().slice(0, 3);
+  
   const selectedWorkSlugs = [
-    "omnislm",
     "seedtracking",
     "local-llm",
     "paathai",
@@ -132,9 +138,9 @@ export default function HomePage() {
   
   const metrics = [
     "Creator of OmniSLM",
-    "Software Engineer",
+    "AI Systems Engineer",
     "M.Tech CS @ SRMIST",
-    "Python + Java AI Engineering",
+    "Python + Go AI Engineering",
     "RAG & Agent Architectures",
     "Open Source Contributor",
   ];
@@ -148,7 +154,7 @@ export default function HomePage() {
         <div className="flex flex-col-reverse md:flex-row items-start gap-10 md:gap-16">
           <div className="flex-1">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--fg-primary)] leading-[1.1] mb-6">
-              Sudesh P <span className="text-[var(--fg-secondary)]">—</span> Software Engineer
+              Sudesh P <span className="text-[var(--fg-secondary)]">—</span> AI Systems Engineer
             </h1>
             <p className="text-lg sm:text-xl text-[var(--fg-secondary)] leading-relaxed max-w-2xl mb-2">
               Creator of OmniSLM. Building production-ready AI applications with Small Language Models.
@@ -156,7 +162,6 @@ export default function HomePage() {
             <p className="text-base text-[var(--fg-tertiary)] leading-relaxed max-w-2xl mb-8">
               Focused on RAG pipelines, local-first LLM platforms, agent architectures, and privacy-first AI infrastructure.
             </p>
-
 
             {/* Location + Education */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--fg-tertiary)] mb-8">
@@ -172,10 +177,10 @@ export default function HomePage() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <Link
-                href="/projects"
+                href="/omnislm"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] hover:bg-[var(--fg-secondary)] transition-colors no-underline"
               >
-                View Projects
+                Discover OmniSLM
               </Link>
               <Link
                 href="/contact"
@@ -184,14 +189,12 @@ export default function HomePage() {
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 Open to AI Engineering Roles
               </Link>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/blog"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-[var(--radius-sm)] border border-[var(--border)] text-[var(--fg-primary)] hover:bg-[var(--bg-secondary)] transition-colors no-underline"
               >
-                Download Resume
-              </a>
+                Read My Notes
+              </Link>
             </div>
 
             {/* Social links */}
@@ -253,7 +256,7 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            {/* Second Set (Duplicate for seamless loop) */}
+            {/* Second Set */}
             <div className="flex items-center gap-8 px-4 whitespace-nowrap" aria-hidden="true">
               {metrics.map((m, i) => (
                 <div key={i} className="flex items-center gap-8 text-sm font-bold text-[var(--fg-primary)] tracking-wide">
@@ -266,166 +269,144 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── OmniSLM Flagship Showcase ────────────────────── */}
-      <section className="border-b border-[var(--border-subtle)] relative overflow-hidden bg-[var(--bg-secondary)]">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-            <div className="flex-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-xs font-bold uppercase tracking-widest text-[var(--fg-primary)] shadow-sm">
-                Flagship Framework
+      {/* ── Featured OmniSLM Update Banner ───────────────── */}
+      <section className="bg-[var(--bg-primary)] border-b border-[var(--border-subtle)]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-[var(--accent)]/10 border border-[var(--accent)]/20 rounded-[var(--radius-md)] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Zap size={18} className="text-[var(--accent)]" />
+                <span className="text-sm font-bold text-[var(--accent)] uppercase tracking-wider">Featured Release</span>
               </div>
-              
-              <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[var(--fg-primary)] mb-6">
-                OmniSLM
-              </h2>
-              
-              <p className="text-lg text-[var(--fg-secondary)] leading-relaxed mb-6">
-                An open-source, extensible framework for building production-ready AI applications with Small Language Models. OmniSLM eliminates the fragmented tooling problem by unifying RAG, memory, inference, and agent patterns into a single architecture.
+              <h2 className="text-2xl font-bold text-[var(--fg-primary)] mb-2">OmniSLM v0.5 is now available</h2>
+              <p className="text-[var(--fg-secondary)] max-w-2xl">
+                Introducing native agent orchestration, seamless vLLM continuous batching integration, and enhanced memory providers for complex multi-turn workflows.
               </p>
-
-              <div className="space-y-3 mb-10">
-                <div className="flex items-center gap-3 text-sm font-bold text-[var(--fg-primary)]">
-                  <div className="w-2 h-2 bg-[var(--accent)] rounded-sm"></div> Modular Architecture
-                </div>
-                <div className="flex items-center gap-3 text-sm font-bold text-[var(--fg-primary)]">
-                  <div className="w-2 h-2 bg-[var(--accent)] rounded-sm"></div> Built for Local & Edge Inference
-                </div>
-                <div className="flex items-center gap-3 text-sm font-bold text-[var(--fg-primary)]">
-                  <div className="w-2 h-2 bg-[var(--accent)] rounded-sm"></div> Privacy-First Design
-                </div>
-              </div>
-              
-              <div className="flex flex-wrap items-center gap-4 mb-10">
-                <Link
-                  href="/projects/omnislm"
-                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold rounded-[var(--radius-sm)] bg-[var(--fg-primary)] text-[var(--bg-primary)] hover:bg-[var(--fg-secondary)] transition-colors no-underline"
-                >
-                  View Full OmniSLM Case Study <ArrowRight size={16} />
-                </Link>
-                <a
-                  href="https://github.com/sudeshsudhii/OmniSLM"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold rounded-[var(--radius-sm)] border border-[var(--border)] text-[var(--fg-primary)] hover:bg-[var(--bg-primary)] transition-colors no-underline bg-[var(--bg-secondary)]"
-                >
-                  <GithubIcon size={16} /> GitHub Repository
-                </a>
-              </div>
-
-              {/* Documentation & Roadmap links */}
-              <div className="flex flex-wrap gap-6 text-sm">
-                <Link href="/architecture" className="inline-flex items-center gap-2 text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] font-medium transition-colors">
-                  <FileText size={16} /> Documentation
-                </Link>
-                <Link href="/open-source" className="inline-flex items-center gap-2 text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] font-medium transition-colors">
-                  <Map size={16} /> Roadmap
-                </Link>
-                <Link href="/open-source" className="inline-flex items-center gap-2 text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] font-medium transition-colors">
-                  <Eye size={16} /> Future Vision
-                </Link>
-              </div>
             </div>
-            
-            <div className="w-full lg:w-[50%] grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-6 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-sm">
-                <div className="w-10 h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] flex items-center justify-center mb-4 text-[var(--fg-primary)] bg-[var(--bg-secondary)]">
-                  <Terminal size={18} />
-                </div>
-                <h3 className="font-bold text-[var(--fg-primary)] mb-2">Runtime Layer</h3>
-                <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">Pluggable execution environments for local models (Ollama) and lightweight inference systems.</p>
-              </div>
-              
-              <div className="p-6 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-sm">
-                <div className="w-10 h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] flex items-center justify-center mb-4 text-[var(--fg-primary)] bg-[var(--bg-secondary)]">
-                  <Brain size={18} />
-                </div>
-                <h3 className="font-bold text-[var(--fg-primary)] mb-2">Memory Engine</h3>
-                <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">Vector-backed and stateful memory management for context-aware multi-turn conversations.</p>
-              </div>
-              
-              <div className="p-6 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-sm">
-                <div className="w-10 h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] flex items-center justify-center mb-4 text-[var(--fg-primary)] bg-[var(--bg-secondary)]">
-                  <Blocks size={18} />
-                </div>
-                <h3 className="font-bold text-[var(--fg-primary)] mb-2">RAG Framework</h3>
-                <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">Built-in document ingestion, chunking, and hybrid vector search integrations (FAISS, Qdrant).</p>
-              </div>
-              
-              <div className="p-6 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-sm">
-                <div className="w-10 h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] flex items-center justify-center mb-4 text-[var(--fg-primary)] bg-[var(--bg-secondary)]">
-                  <Code2 size={18} />
-                </div>
-                <h3 className="font-bold text-[var(--fg-primary)] mb-2">Agent SDK</h3>
-                <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">Tools for building autonomous agents capable of tool-use, multi-step reasoning, and API integration.</p>
-              </div>
-            </div>
+            <Link
+              href="/omnislm"
+              className="shrink-0 px-6 py-3 rounded-[var(--radius-sm)] bg-[var(--accent)] text-white font-bold text-sm hover:bg-[var(--accent-hover)] transition-colors"
+            >
+              Explore OmniSLM
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Selected Engineering Work ───────────────────────── */}
+      {/* ── Latest Insights & Notes ──────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="mb-12">
-          <h2 className="text-3xl font-extrabold text-[var(--fg-primary)] tracking-tight">
-            Selected Engineering Work
-          </h2>
-          <p className="text-base text-[var(--fg-secondary)] mt-3 max-w-2xl">
-            Detailed case studies of production architectures, ranging from blockchain supply chains to local AI ecosystems.
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+          <div>
+            <h2 className="text-3xl font-extrabold text-[var(--fg-primary)] tracking-tight">
+              Latest Insights
+            </h2>
+            <p className="text-base text-[var(--fg-secondary)] mt-3 max-w-2xl">
+              Thoughts on building production-grade AI infrastructure and the shift towards Small Language Models.
+            </p>
+          </div>
+          <Link href="/blog" className="shrink-0 text-sm font-bold text-[var(--accent)] hover:text-[var(--fg-primary)] transition-colors inline-flex items-center gap-2">
+            View all notes <ArrowRight size={16} />
+          </Link>
         </div>
 
-        <div className="space-y-6">
-          {selectedWork.map((project) => (
-            <div 
-              key={project.slug} 
-              className="group flex flex-col md:flex-row border border-[var(--border-subtle)] rounded-[var(--radius-md)] overflow-hidden bg-[var(--bg-secondary)] hover:border-[var(--border)] transition-colors"
-            >
-              {/* Left Column: Title & Tech */}
-              <div className="md:w-1/3 p-6 md:p-8 border-b md:border-b-0 md:border-r border-[var(--border-subtle)] bg-[var(--bg-primary)]">
-                <h3 className="text-xl font-bold text-[var(--fg-primary)] mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-[var(--fg-secondary)] mb-6">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.slice(0, 4).map(t => (
-                    <span key={t} className="px-2 py-1 text-xs font-semibold rounded-[var(--radius-sm)] bg-[var(--bg-secondary)] text-[var(--fg-primary)] border border-[var(--border-subtle)]">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)] hover:text-[var(--fg-primary)] transition-colors"
-                >
-                  Read Case Study <ArrowRight size={14} />
-                </Link>
-              </div>
-
-              {/* Right Column: Execution Details */}
-              <div className="md:w-2/3 p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="text-xs font-bold text-[var(--fg-tertiary)] uppercase tracking-wider mb-2">Problem</h4>
-                  <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">
-                    {project.problem}
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-[var(--fg-tertiary)] uppercase tracking-wider mb-2">Outcome</h4>
-                  <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">
-                    {project.impact}
-                  </p>
-                </div>
-                <div className="md:col-span-2 pt-4 border-t border-[var(--border-subtle)]">
-                  <h4 className="text-xs font-bold text-[var(--fg-tertiary)] uppercase tracking-wider mb-2">Architecture Highlights</h4>
-                  <p className="text-sm text-[var(--fg-primary)] font-medium leading-relaxed">
-                    {project.caseStudy?.architecture || project.solution}
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {latestPosts.map((post) => (
+            <ArticleCard key={post.slug} post={post} />
           ))}
+        </div>
+
+        {/* Short AI Engineering Notes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="p-8 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+            <h3 className="text-lg font-bold text-[var(--fg-primary)] mb-4 flex items-center gap-2">
+              <Terminal size={18} /> Engineering Note: Vector Isolation
+            </h3>
+            <p className="text-sm text-[var(--fg-secondary)] leading-relaxed italic">
+              "Never trust the LLM prompt to filter tenant data. In multi-tenant RAG architectures, isolation must happen at the physical or metadata layer before the retrieved context ever reaches the inference engine."
+            </p>
+          </div>
+          <div className="p-8 rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+            <h3 className="text-lg font-bold text-[var(--fg-primary)] mb-4 flex items-center gap-2">
+              <Cpu size={18} /> Engineering Note: Async Inference
+            </h3>
+            <p className="text-sm text-[var(--fg-secondary)] leading-relaxed italic">
+              "Synchronous HTTP requests to an LLM endpoint will eventually bring down your system. Always decouple the web tier from the inference tier using a robust message queue like RabbitMQ."
+            </p>
+          </div>
+        </div>
+
+        {/* Newsletter CTA */}
+        <Newsletter />
+      </section>
+
+      {/* ── Selected Engineering Work ───────────────────────── */}
+      <section className="bg-[var(--bg-secondary)] border-t border-[var(--border-subtle)]">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-extrabold text-[var(--fg-primary)] tracking-tight">
+                Other Engineering Work
+              </h2>
+              <p className="text-base text-[var(--fg-secondary)] mt-3 max-w-2xl">
+                Case studies of production architectures, from academic intelligence platforms to Web3 supply chains.
+              </p>
+            </div>
+            <Link href="/projects" className="shrink-0 text-sm font-bold text-[var(--accent)] hover:text-[var(--fg-primary)] transition-colors inline-flex items-center gap-2">
+              View all projects <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="space-y-6">
+            {selectedWork.map((project) => (
+              <div 
+                key={project.slug} 
+                className="group flex flex-col md:flex-row border border-[var(--border-subtle)] rounded-[var(--radius-md)] overflow-hidden bg-[var(--bg-primary)] hover:border-[var(--border)] transition-colors"
+              >
+                <div className="md:w-1/3 p-6 md:p-8 border-b md:border-b-0 md:border-r border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+                  <h3 className="text-xl font-bold text-[var(--fg-primary)] mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-[var(--fg-secondary)] mb-6">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.slice(0, 4).map(t => (
+                      <span key={t} className="px-2 py-1 text-xs font-semibold rounded-[var(--radius-sm)] bg-[var(--bg-primary)] text-[var(--fg-primary)] border border-[var(--border-subtle)]">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-[var(--accent)] hover:text-[var(--fg-primary)] transition-colors"
+                  >
+                    Read Case Study <ArrowRight size={14} />
+                  </Link>
+                </div>
+
+                <div className="md:w-2/3 p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-xs font-bold text-[var(--fg-tertiary)] uppercase tracking-wider mb-2">Problem</h4>
+                    <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">
+                      {project.problem}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[var(--fg-tertiary)] uppercase tracking-wider mb-2">Outcome</h4>
+                    <p className="text-sm text-[var(--fg-secondary)] leading-relaxed">
+                      {project.impact}
+                    </p>
+                  </div>
+                  <div className="md:col-span-2 pt-4 border-t border-[var(--border-subtle)]">
+                    <h4 className="text-xs font-bold text-[var(--fg-tertiary)] uppercase tracking-wider mb-2">Architecture Highlights</h4>
+                    <p className="text-sm text-[var(--fg-primary)] font-medium leading-relaxed">
+                      {project.caseStudy?.architecture || project.solution}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

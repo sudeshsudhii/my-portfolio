@@ -1,0 +1,38 @@
+---
+title: "Building Multi-Tenant AI Systems"
+description: "Architectural patterns for designing AI infrastructure that securely isolates tenant data while maximizing resource utilization."
+date: "2026-05-22"
+author: "Sudesh P"
+category: "AI Infrastructure"
+tags: ["Architecture", "Multi-tenancy", "Security", "Scale"]
+coverImage: "/blog/multi-tenant-ai.svg"
+---
+
+Designing a standard SaaS application for multi-tenancy is a well-understood problem. Designing an AI application for multi-tenancy, however, introduces entirely new challenges around state, context, and vector isolation.
+
+## The Vector Database Challenge
+
+When dealing with Retrieval-Augmented Generation (RAG), your primary data store isn't just a relational database; it's a vector database. Mixing embeddings from different tenants is a catastrophic security vulnerability waiting to happen.
+
+### Approach 1: Physical Isolation
+Deploying a separate vector database instance for each tenant. This provides maximum security but is incredibly resource-intensive and hard to scale for thousands of small tenants.
+
+### Approach 2: Logical Isolation (Namespace/Filter)
+Most modern vector databases (like Qdrant or Pinecone) support namespaces or metadata filtering. You store all vectors in a single collection but append a `tenant_id` to the metadata. Every query must strictly enforce this filter.
+
+```python
+# Example logical isolation query
+results = vector_db.search(
+    query_vector=query,
+    filter={"tenant_id": current_tenant_id},
+    limit=5
+)
+```
+
+## Prompt Injection and Tenant Boundaries
+
+If an LLM has access to a tool that queries the database, you must ensure the LLM cannot be socially engineered into bypassing the tenant filter. The filter must be enforced at the API layer, *never* trusted to the LLM's prompt.
+
+## Conclusion
+
+Building multi-tenant AI requires treating the AI model as an untrusted client. By enforcing strict boundaries at the data access layer, we can build scalable systems that protect tenant data without sacrificing performance.

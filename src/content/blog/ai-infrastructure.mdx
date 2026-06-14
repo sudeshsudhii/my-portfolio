@@ -1,0 +1,32 @@
+---
+title: "Designing AI Infrastructure for Scale"
+description: "How to architect backend systems capable of handling thousands of concurrent LLM inferences without melting down."
+date: "2026-02-05"
+author: "Sudesh P"
+category: "AI Infrastructure"
+tags: ["Kubernetes", "GPU", "Scale", "Architecture"]
+coverImage: "/blog/ai-infrastructure.svg"
+---
+
+Scaling traditional web apps is easy: throw them behind a load balancer and autoscale the compute instances. 
+
+Scaling AI inference is a completely different beast. A single request might tie up a GPU for several seconds, leading to catastrophic queue buildups if not handled correctly.
+
+## The Queue is King
+
+In an AI infrastructure, the message queue (like RabbitMQ or Kafka) is the most critical component. Synchronous HTTP requests are dangerous. If the client drops the connection after waiting 10 seconds for an LLM response, the GPU might still be processing that abandoned request.
+
+By decoupling the web API from the inference engine using a message queue, you achieve two things:
+1. **Resilience:** If the inference engine crashes, the message remains in the queue.
+2. **Backpressure:** The system won't accept more work than it can handle.
+
+## Continuous Batching
+
+If you're self-hosting models, continuous batching (like vLLM) is essential. It groups incoming requests together dynamically, massively improving GPU utilization.
+
+Instead of processing requests sequentially:
+- Request A arrives and starts processing.
+- Request B arrives and is immediately injected into the active batch.
+- Request A finishes and yields its resources instantly.
+
+This single optimization can increase throughput by 10x compared to naive inference servers.

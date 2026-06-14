@@ -1,0 +1,27 @@
+---
+title: "Lessons Learned Building OmniSLM"
+description: "The technical hurdles and architectural decisions behind creating an open-source Small Language Model framework."
+date: "2026-03-10"
+author: "Sudesh P"
+category: "OmniSLM"
+tags: ["Open Source", "Framework", "Python", "Architecture"]
+coverImage: "/blog/omnislm-lessons.svg"
+---
+
+Building [OmniSLM](/omnislm) from scratch was an exercise in understanding exactly what developers need to take an AI prototype to production.
+
+## The Motivation
+
+I noticed a massive gap in the AI tooling ecosystem. You had massive, complex enterprise platforms on one side, and highly experimental, brittle scripts on the other. Nothing was bridging the gap for developers who wanted to build solid, local-first applications using models like Llama 3 or Mistral.
+
+## Key Architectural Decisions
+
+1. **Provider Agnostic:** The core engine had to abstract away the inference provider. Switching between Ollama, Llama.cpp, or an OpenAI-compatible API should only require changing a single configuration line.
+2. **First-Class Memory:** Memory couldn't be an afterthought. Integrating vector-backed memory directly into the agent lifecycle was crucial for multi-turn conversations.
+3. **Developer Ergonomics:** Python developers value simplicity. I opted for a highly modular, plug-and-play architecture over deep inheritance trees.
+
+## The Open Source Journey
+
+Maintaining an open-source project is as much about community management as it is about code. Writing comprehensive documentation and providing clear examples proved to be the most critical factor in driving adoption.
+
+OmniSLM is continuously evolving, but the core philosophy remains the same: empowering developers to build privacy-first AI.
