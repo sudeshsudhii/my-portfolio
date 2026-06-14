@@ -56,8 +56,26 @@ const notes = [
 ];
 
 export default function NotesPage() {
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Sudesh P Engineering Notes",
+    "url": "https://www.sudhii.in/notes",
+    "description": "Technical deep dives, architecture decisions, and engineering lessons.",
+    "blogPost": notes.map(note => ({
+      "@type": "BlogPosting",
+      "headline": note.title,
+      "datePublished": note.date,
+      "url": `https://www.sudhii.in/notes/${note.slug}`
+    }))
+  };
+
   return (
     <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       {/* Header */}
       <div className="mb-16">
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[var(--fg-primary)] mb-6">

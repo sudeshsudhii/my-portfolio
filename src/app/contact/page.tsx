@@ -13,8 +13,27 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Sudesh P",
+      "email": siteConfig.email,
+      "url": "https://www.sudhii.in",
+      "sameAs": [
+        siteConfig.github,
+        siteConfig.linkedin
+      ]
+    }
+  };
+
   return (
     <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+      />
       <div className="max-w-lg mb-10">
         <h1 className="text-3xl font-bold text-[var(--fg-primary)] tracking-tight mb-2">
           Contact

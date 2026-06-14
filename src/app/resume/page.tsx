@@ -12,8 +12,27 @@ export const metadata: Metadata = {
 };
 
 export default function ResumePage() {
+  const resumeSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Sudesh P",
+      "jobTitle": "Software Engineer",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "SRMIST"
+      },
+      "url": "https://www.sudhii.in/resume"
+    }
+  };
+
   return (
     <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(resumeSchema) }}
+      />
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-[var(--fg-primary)] tracking-tight mb-2">
           Resume
